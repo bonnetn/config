@@ -1,0 +1,4 @@
+setxkbmap -option caps:swapescape -layout us -variant altgr-intl
+feh --bg-scale /home/bonnetn/Documents/pictures/wallpaper.png & \
+slstatus & \
+exec startxfce4
