@@ -1,0 +1,83 @@
+#
+# ~/.bashrc
+#
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+alias ls='ls --color=auto'
+PS1='[\u@\h \W]\$ '
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export EDITOR='vim'
+
+#SSH agent
+SSH_AGENT_ARGS='-t 600'
+
+if ! pgrep -u "$USER" ssh-agent > /dev/null; then
+  ¦ ssh-agent $SSH_AGENT_ARGS > ~/.ssh-agent-thing
+fi
+if [[ "$SSH_AGENT_PID" == "" ]]; then
+  ¦ eval "$(<~/.ssh-agent-thing)"
+fi
+
+# bash completion
+# Use bash-completion, if available
+[[ $PS1 && -f /usr/share/bash-completion/bash_completion ]] && \
+    . /usr/share/bash-completion/bash_completion
+
+export _JAVA_AWT_WM_NONREPARENTING=1
+
+alias suod=sudo
+
+alias ls='ls --color'
+alias sl='ls'
+alias l='ls -lah'
+alias v=vim
+alias vi=vim
+
+alias drun="docker run -it --rm"
+
+### Vim misstyped
+alias cim=vim
+alias bim=vim
+alias vum=vim
+alias vom=vim
+alias vil=vim
+alias viù=vim
+alias ivm=vim
+alias vmi=vim
+
+### Colors
+alias ip="ip -c"
+alias diff="diff --color=auto"
+alias grep="grep --color=auto"
+
+alias night="xbacklight -set 1"
+
+
+#alias proj="/usr/bin/xrandr --output VGA-1 --same-as eDP-1"
+alias battery="acpi -i"
+alias lock="/home/bonnetn/Documents/dev/scripts/lock.sh"
+alias ssh='TERM=xterm-256color ssh'
+alias swap_escape='setxkbmap -option caps:swapescape '
+alias disable_aslr='echo 0 | sudo tee /proc/sys/kernel/randomize_va_space'
+alias allow_attach_gdb='echo 0 | sudo tee /proc/sys/kernel/yama/ptrace_scope'
+
+### Python
+alias venv='source venv/bin/activate'
+alias venv2='source venv2/bin/activate'
+
+### Systemd
+alias poweroff="systemctl poweroff"
+alias reboot="systemctl reboot"
+alias suspend="systemctl suspend"
+alias hibernate="systemctl hibernate"
+
+### Vagrant
+alias vup="vagrant up"
+alias vhalt="vagrant halt"
+alias vssh="vagrant ssh"
+
+setxkbmap -option "nbsp:none" # Remove non breaking space.
